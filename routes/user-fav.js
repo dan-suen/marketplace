@@ -22,7 +22,6 @@ router.get('/', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-  console.log(req.session.user_id, req.body.item_id, req.body.user_id)
   checkFavData(req.session.user_id, req.body.item_id).then(data => {
     checkConvoData(req.session.user_id, req.body.item_id, req.body.user_id).then(data1 => {
       return res.json([data, data1]);

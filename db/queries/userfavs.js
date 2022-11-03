@@ -8,7 +8,7 @@ let favData = function (userName) {
     FROM items
     JOIN users ON items.seller_id = users.id
     WHERE users.username = $1
-    LIMIT 10`, [userName])
+    LIMIT 10;`, [userName])
     .then(data => {
       return data.rows;
     })
@@ -98,7 +98,7 @@ let favouritedData = function (user) {
       data.rows.forEach((element) => {
         x.push(element.item_id);
       })
-      let y = x.join(" OR items.id = ");
+      let y = (x.length > 0) ? x.join(" OR items.id = ") : null;
       let queryString = "SELECT users.id AS user_id, items.id as item_id, sold_status, img_url, price, title, items.description AS item_description, users.user_pic, users.username FROM items JOIN users ON items.seller_id = users.id WHERE items.id = "
       queryString = queryString + y + " LIMIT 10";
     return db
