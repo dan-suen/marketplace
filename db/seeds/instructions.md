@@ -5,7 +5,7 @@
 
 ### Make sure to check that your .env file is configured properly!!
 
-- Install the faker (fake data generator) and bcrypt (password hasher) packages
+- Install the faker (fake data generator) and bcrypt (password hasher) packages (if not already installed)
 
 ```
 npm install --save-dev @faker-js/faker
@@ -39,8 +39,10 @@ node 01_users_random_seeds.js 5 true
 
 ```
 
-- Table 4 must be generated manually by specifying true/false, sender_id, receiver_id and item_id; randomly conversation generation was removed since it does not make sense practically.
-`
+
+- Data in Table 4 must be generated manually by specifying true/false, sender_id, receiver_id and item_id; randomly conversation generation was removed since it does not make sense practically. 
+  - The corresponding row for conversations are also automatically created when items are loaded while there is a logged-in user; therefore, only create seeds for conversations and messages if a randomly generated message history is desired
+
 Simple checks exists to prevent id input exceeding the maximum id of the referenced table but user has to verify manually that either sender_id or receiver_id matches the seller_id for the corresponding item on the items table.
 
 ```
